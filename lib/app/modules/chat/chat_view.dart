@@ -37,9 +37,12 @@ class ChatPage extends GetView<ChatController> {
               controller.sendMessage();
               controller.clearText();
             },
-            decoration: const InputDecoration(
-              suffixIcon: Icon(Icons.send),
-              border: OutlineInputBorder(),
+            decoration: InputDecoration(
+              suffixIcon: IconButton(onPressed: () {
+                controller.sendMessage();
+                controller.clearText();
+              }, icon: const Icon(Icons.send)),
+              border: const OutlineInputBorder(),
             ),
           ),
           ElevatedButton(

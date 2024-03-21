@@ -11,10 +11,6 @@ class ChatController extends GetxController {
   void clearText() {
     textCtrl.clear();
   }
-  
-  void textClear() {
-    textCtrl.clear();
-  }
 
   @override
   void onInit() {
