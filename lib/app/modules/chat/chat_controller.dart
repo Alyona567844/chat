@@ -8,6 +8,10 @@ class ChatController extends GetxController {
   RxList<ChatMessage> get messages => UserService.to.messages;
 
   final textCtrl = TextEditingController();
+  void clearText() {
+    textCtrl.clear();
+  }
+  
   void textClear() {
     textCtrl.clear();
   }

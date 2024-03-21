@@ -48,14 +48,23 @@ class SocketService extends GetxService {
     //   UserService.to.addMessageToList(message);
     // });
 
+    // _socket.onAny((event, data) {
+    //   var isKnown = SocketEvent.values.any((el) => el.name == event);
+    //   if (isKnown) return;
+    //   data['type'] = event;
+    //   var message = ChatMessage.fromJson(data);
+    //   UserService.to.addMessageToList(message);
+    // });
+    // преобразовываем data в map, что позволит использовать оператор [] для установки значения type
     _socket.onAny((event, data) {
       var isKnown = SocketEvent.values.any((el) => el.name == event);
-      if (isKnown) return;
-      data['type'] = event;
-      var message = ChatMessage.fromJson(data);
-      UserService.to.addMessageToList(message);
+      if (!isKnown) {
+        var dataMap = data as Map<String, dynamic>;
+        dataMap['type'] = event;
+        var message = ChatMessage.fromJson(data);
+        UserService.to.addMessageToList(message);
+      }
     });
-
     return this;
   }
   void connect() {

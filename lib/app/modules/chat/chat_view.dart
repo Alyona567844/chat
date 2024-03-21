@@ -33,7 +33,10 @@ class ChatPage extends GetView<ChatController> {
           const SizedBox(),
           TextFormField(
             controller: controller.textCtrl,
-            onFieldSubmitted: (value) => controller.sendMessage(),
+            onFieldSubmitted: (value) {
+              controller.sendMessage();
+              controller.clearText();
+            },
             decoration: const InputDecoration(
               suffixIcon: Icon(Icons.send),
               border: OutlineInputBorder(),
