@@ -8,6 +8,8 @@ import 'package:get/get.dart';
 class SocketService extends GetxService {
   static SocketService get to => Get.find();
   late Socket _socket;
+
+  String get clientId => _socket.id ?? "";
   Future<SocketService> init() async {
     _socket = io('https://masqed.ru',
     OptionBuilder()

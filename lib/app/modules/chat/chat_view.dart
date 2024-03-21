@@ -1,5 +1,6 @@
 import 'package:chat/app/models/socked_events.dart';
 import 'package:chat/app/modules/chat/chat_controller.dart';
+import 'package:chat/app/modules/chat/widgets/bubble_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,11 +17,13 @@ class ChatPage extends GetView<ChatController> {
                 itemCount: controller.messages.length,
                 itemBuilder: (context, index) {
                   var message = controller.messages[index];
+                  var itsMe = controller.itsMe(message.clientId);
                   switch (message.type) {
                     case SocketEvent.login:
                       return Text("${message.username} вошёл в чат");
                     case SocketEvent.newMessage:
-                      return Text("${message.username} ${message.message}");
+                      // return Text("${message.username} ${message.message}");
+                      return BubbleMessage(message: message, itsMe: itsMe);
                     case SocketEvent.logout:
                       return Text("${message.username} вышел из чата");
                     default:

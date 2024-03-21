@@ -25,4 +25,6 @@ class ChatController extends GetxController {
   void disconnect() {
     SocketService.to.disconnect();
   }
+
+  bool itsMe(String clientId) => clientId == SocketService.to.clientId;
 }
