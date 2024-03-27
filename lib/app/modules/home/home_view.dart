@@ -9,53 +9,70 @@ class HomePage extends GetView<HomeController> {
       appBar: AppBar(
         title: const Text(
           'Добро пожаловать в чат',
-          style: TextStyle(color: Colors.pink),
+          style: TextStyle(color: Color.fromARGB(186, 255, 255, 255)),
         ),
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Введите имя',
-            style: TextStyle(color: Colors.pink, fontSize: 25),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                ),
-              ),
-              controller: controller.textCtrl,
-              onSubmitted: (value) => controller.signIn(),
-              style: const TextStyle(color: Colors.pink),
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              fit: BoxFit.fill,
+              image: AssetImage('assets/images/sky.jpg')),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Введите имя',
+              style: TextStyle(color: Color.fromARGB(186, 255, 255, 255), fontSize: 25),
             ),
-          ),
-          // const SizedBox(
-          //   height: 20,
-          // ),
-          // ElevatedButton(
-          //   style: const ButtonStyle(
-          //       backgroundColor: MaterialStatePropertyAll<Color>(
-          //           Colors.pink)),
-          //   onPressed: () {},
-          //   child: const Text(
-          //     'Войти',
-          //     style: TextStyle(
-          //       color: Colors.black,
-          //       fontSize: 20,
-          //     ),
-          //   ),
-          // ),
-        ],
+            const SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(186, 255, 255, 255),
+                    )
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(186, 255, 255, 255),
+                    )
+                  ),
+                ),
+                cursorColor: const Color.fromARGB(186, 255, 255, 255),
+                controller: controller.textCtrl,
+                onSubmitted: (value) => controller.signIn(),
+                style: const TextStyle(color: Color.fromARGB(186, 255, 255, 255)),
+              ),
+            ),
+            // const SizedBox(
+            //   height: 20,
+            // ),
+            // ElevatedButton(
+            //   style: const ButtonStyle(
+            //       backgroundColor: MaterialStatePropertyAll<Color>(
+            //           Colors.pink)),
+            //   onPressed: () {},
+            //   child: const Text(
+            //     'Войти',
+            //     style: TextStyle(
+            //       color: Colors.black,
+            //       fontSize: 20,
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
       ),
-      backgroundColor: const Color.fromARGB(255, 29, 100, 154),
+      // backgroundColor: const Color.fromARGB(186, 255, 255, 255),
     );
   }
 }

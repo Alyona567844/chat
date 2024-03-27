@@ -17,9 +17,9 @@ class UserService extends GetxService {
     username = user;
     SocketService.to.connect();
   }
-
+  // довавить сообщение [ChatMessage] в историю
   void addMessageToList (ChatMessage message) {
-    printInfo(info: "new message $message");
+    // printInfo(info: "new message $message");
     messages.add(message);
   }
 
