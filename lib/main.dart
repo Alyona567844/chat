@@ -4,15 +4,15 @@ import 'package:chat/app/services/user_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void main() async {
-  await initialServices();
+void main() {
+  initialServices();
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     initialRoute: Routes.HOME,
     getPages: AppPages.routes,
   ));
 }
-Future<void> initialServices() async {
-  await Get.putAsync(() => SocketService().init());
-  await Get.putAsync(() => UserService().init());
+void initialServices() {
+  Get.put(SocketService().init());
+  Get.put(UserService());
 }

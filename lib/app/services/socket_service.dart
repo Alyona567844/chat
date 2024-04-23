@@ -10,7 +10,7 @@ class SocketService extends GetxService {
   late Socket _socket;
 
   String get clientId => _socket.id ?? "";
-  Future<SocketService> init() async {
+  SocketService init() {
     _socket = io('https://masqed.ru',
     OptionBuilder()
     .setTransports(['websocket'])
@@ -21,7 +21,7 @@ class SocketService extends GetxService {
     );
     _socket.onConnect((data) {
       printInfo(info: "Socket connected");
-      _sendLogInMesssage();
+      sendLogInMesssage();
       Get.offNamed(Routes.CHAT);
     });
     _socket.onDisconnect((data) { 
@@ -52,7 +52,7 @@ class SocketService extends GetxService {
     // });
 
     _socket.onAny((event, data) {
-      var isKnown = SocketEvent.values.any((el) => el.name == event);
+      var isKnown = SocketEvents.values.any((el) => el.name == event);
       if (!isKnown) return;
       data['type'] = event;
       var message = ChatMessage.fromJson(data);
@@ -75,20 +75,32 @@ class SocketService extends GetxService {
   }
 
   void disconnect() {
-    _sendLogOutMesssage();
+    sendLogOutMesssage();
     _socket.disconnect();
   }
 
   //сказать серверу, что мы подключились 
-  void _sendLogInMesssage() {
-    _socket.emit(SocketEvent.login.name, UserService.to.username);
+  void sendLogInMesssage() {
+    _socket.emit(SocketEvents.login.name, UserService.to.username);
   }
 
-  void _sendLogOutMesssage() {
-    _socket.emit(SocketEvent.logout.name);
+  void sendLogOutMesssage() {
+    _socket.emit(SocketEvents.logout.name);
   }
 
   void sendMessageToChat(String message) {
-    _socket.emit(SocketEvent.newMessage.name, message);
+    _socket.emit(SocketEvents.newMessage.name, message);
+  }
+
+  void sendImageMessage(String file) {
+    _socket.emit(SocketEvents.newImageMessage.name, file);
+  }
+
+  void sendTypingStart() {
+    _socket.emit(SocketEvents.typingStart.name);
+  }
+
+  void sendTypingStop() {
+    _socket.emit(SocketEvents.typingStop.name);
   }
 }

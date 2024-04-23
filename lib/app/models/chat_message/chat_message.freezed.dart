@@ -22,8 +22,9 @@ ChatMessage _$ChatMessageFromJson(Map<String, dynamic> json) {
 mixin _$ChatMessage {
   String get clientId => throw _privateConstructorUsedError;
   String get username => throw _privateConstructorUsedError;
+  int get date => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
-  SocketEvent get type => throw _privateConstructorUsedError;
+  SocketEvents get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +39,11 @@ abstract class $ChatMessageCopyWith<$Res> {
       _$ChatMessageCopyWithImpl<$Res, ChatMessage>;
   @useResult
   $Res call(
-      {String clientId, String username, String message, SocketEvent type});
+      {String clientId,
+      String username,
+      int date,
+      String message,
+      SocketEvents type});
 }
 
 /// @nodoc
@@ -56,6 +61,7 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
   $Res call({
     Object? clientId = null,
     Object? username = null,
+    Object? date = null,
     Object? message = null,
     Object? type = null,
   }) {
@@ -68,6 +74,10 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as int,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -75,7 +85,7 @@ class _$ChatMessageCopyWithImpl<$Res, $Val extends ChatMessage>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SocketEvent,
+              as SocketEvents,
     ) as $Val);
   }
 }
@@ -89,7 +99,11 @@ abstract class _$$ChatMessageImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String clientId, String username, String message, SocketEvent type});
+      {String clientId,
+      String username,
+      int date,
+      String message,
+      SocketEvents type});
 }
 
 /// @nodoc
@@ -105,6 +119,7 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
   $Res call({
     Object? clientId = null,
     Object? username = null,
+    Object? date = null,
     Object? message = null,
     Object? type = null,
   }) {
@@ -117,6 +132,10 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
               as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as int,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -124,37 +143,42 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as SocketEvent,
+              as SocketEvents,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ChatMessageImpl implements _ChatMessage {
+class _$ChatMessageImpl extends _ChatMessage {
   _$ChatMessageImpl(
-      {required this.clientId,
+      {this.clientId = "0",
       required this.username,
+      required this.date,
       this.message = "",
-      this.type = SocketEvent.unknown});
+      this.type = SocketEvents.unknown})
+      : super._();
 
   factory _$ChatMessageImpl.fromJson(Map<String, dynamic> json) =>
       _$$ChatMessageImplFromJson(json);
 
   @override
+  @JsonKey()
   final String clientId;
   @override
   final String username;
+  @override
+  final int date;
   @override
   @JsonKey()
   final String message;
   @override
   @JsonKey()
-  final SocketEvent type;
+  final SocketEvents type;
 
   @override
   String toString() {
-    return 'ChatMessage(clientId: $clientId, username: $username, message: $message, type: $type)';
+    return 'ChatMessage(clientId: $clientId, username: $username, date: $date, message: $message, type: $type)';
   }
 
   @override
@@ -166,6 +190,7 @@ class _$ChatMessageImpl implements _ChatMessage {
                 other.clientId == clientId) &&
             (identical(other.username, username) ||
                 other.username == username) &&
+            (identical(other.date, date) || other.date == date) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -173,7 +198,7 @@ class _$ChatMessageImpl implements _ChatMessage {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, clientId, username, message, type);
+      Object.hash(runtimeType, clientId, username, date, message, type);
 
   @JsonKey(ignore: true)
   @override
@@ -189,12 +214,14 @@ class _$ChatMessageImpl implements _ChatMessage {
   }
 }
 
-abstract class _ChatMessage implements ChatMessage {
+abstract class _ChatMessage extends ChatMessage {
   factory _ChatMessage(
-      {required final String clientId,
+      {final String clientId,
       required final String username,
+      required final int date,
       final String message,
-      final SocketEvent type}) = _$ChatMessageImpl;
+      final SocketEvents type}) = _$ChatMessageImpl;
+  _ChatMessage._() : super._();
 
   factory _ChatMessage.fromJson(Map<String, dynamic> json) =
       _$ChatMessageImpl.fromJson;
@@ -204,9 +231,11 @@ abstract class _ChatMessage implements ChatMessage {
   @override
   String get username;
   @override
+  int get date;
+  @override
   String get message;
   @override
-  SocketEvent get type;
+  SocketEvents get type;
   @override
   @JsonKey(ignore: true)
   _$$ChatMessageImplCopyWith<_$ChatMessageImpl> get copyWith =>

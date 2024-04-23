@@ -10,13 +10,13 @@ class AppPages {
   static final routes = [
     GetPage(
       name: Routes.HOME,
-      page: () => HomePage(),
+      page: () => const HomePage(),
       binding: HomeBinding(),
     ),
 
     GetPage(
       name: Routes.CHAT,
-      page: () => ChatPage(),
+      page: () => const ChatPage(),
       binding: ChatBinding(),
     ),
   ];
